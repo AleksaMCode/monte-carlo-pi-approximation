@@ -8,31 +8,36 @@
     xmlns:local="clr-namespace:monte_carlo_pi_approximation"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Monte Carlo Pi Approximation"
-    Width="400"
-    Height="90"
-    MaxWidth="400"
-    MaxHeight="90"
+    ResizeMode="NoResize"
+    SizeToContent="WidthAndHeight"
+    Topmost="False"
     mc:Ignorable="d">
     <Grid Margin="5">
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="5" />
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
         <Grid x:Name="radioButtonGrid" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" MinWidth="100" />
+                <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <RadioButton IsChecked="true">Number of iterations</RadioButton>
+                <Grid Height="5" />
                 <RadioButton>Number of decimal places</RadioButton>
             </StackPanel>
-            <TextBox Grid.Column="2" />
-            <Button Grid.Column="4" Padding="0">Calculate</Button>
+            <MetroControls:NumericUpDown
+                Grid.Column="2"
+                Interval="1"
+                Minimum="1"
+                StringFormat="C2" />
+            <!--<TextBox Grid.Column="2" VerticalContentAlignment="Center" />-->
+            <Button Grid.Column="4" Padding="20,0">Calculate</Button>
         </Grid>
     </Grid>
 </Window>
