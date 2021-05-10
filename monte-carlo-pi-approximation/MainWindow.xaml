@@ -27,15 +27,29 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <RadioButton IsChecked="true">Number of iterations</RadioButton>
+                <RadioButton
+                    x:Name="firstRadioButton"
+                    Checked="firstRadioButton_Checked"
+                    IsChecked="true">
+                    Number of iterations
+                </RadioButton>
                 <Grid Height="5" />
-                <RadioButton>Number of decimal places</RadioButton>
+                <RadioButton x:Name="secondRadioButton" Checked="secondRadioButton_Checked">Number of decimal places</RadioButton>
             </StackPanel>
             <MetroControls:NumericUpDown
+                x:Name="FirstNumericUpDown"
                 Grid.Column="2"
                 Interval="1"
                 Minimum="1"
-                StringFormat="C2" />
+                Value="1" />
+            <MetroControls:NumericUpDown
+                x:Name="SecondNumericUpDown"
+                Grid.Column="2"
+                Interval="1"
+                Maximum="8"
+                Minimum="1"
+                Visibility="Hidden"
+                Value="1" />
             <!--<TextBox Grid.Column="2" VerticalContentAlignment="Center" />-->
             <Button Grid.Column="4" Padding="20,0">Calculate</Button>
         </Grid>

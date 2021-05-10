@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +23,32 @@ namespace monte_carlo_pi_approximation
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void firstRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!IsInitialized)
+            {
+                return;
+            }
+            FirstNumericUpDown.Visibility = Visibility.Visible;
+            SecondNumericUpDown.Visibility = Visibility.Hidden;
+        }
+
+        private void secondRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!IsInitialized)
+            {
+                return;
+            }
+            FirstNumericUpDown.Visibility = Visibility.Hidden;
+            SecondNumericUpDown.Visibility = Visibility.Visible;
+        }
+
+        private void FirstNumericUpDown_TouchEnter(object sender, TouchEventArgs e)
+        {
+            FirstNumericUpDown.Visibility = Visibility.Visible;
+
         }
     }
 }
