@@ -67,8 +67,8 @@ namespace monte_carlo_pi_approximation
         {
             var piApproximation = 0.0;
             var total = 0;
-            var inCircle = 0;
-            double x, y = 0;
+            var insideCircle = 0;
+            double x, y;
             var rnd = new Random();
 
             while (total < iterationNumber)
@@ -78,11 +78,11 @@ namespace monte_carlo_pi_approximation
 
                 if (Math.Sqrt(x * x + y * y) <= 1.0)
                 {
-                    inCircle++;
+                    insideCircle++;
                 }
 
                 IterationNumber.Content = ++total;
-                CurrentPiValue.Content = piApproximation = 4 * ((double)inCircle / (double)total);
+                CurrentPiValue.Content = piApproximation = 4 * ((double)insideCircle / (double)total);
             }
 
             MessageBox.Show($"{piApproximation:F8}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -90,10 +90,10 @@ namespace monte_carlo_pi_approximation
 
         private void MonteCarloPiApproximation(double piValue)
         {
-            var piApproximation = 0.0;
+            double piApproximation;
             var total = 0;
-            var inCircle = 0;
-            double x, y = 0;
+            var insideCircle = 0;
+            double x, y;
             var rnd = new Random();
 
             while (true)
@@ -103,11 +103,11 @@ namespace monte_carlo_pi_approximation
 
                 if (Math.Sqrt(x * x + y * y) <= 1.0)
                 {
-                    inCircle++;
+                    insideCircle++;
                 }
 
-                IterationNumber.Content = total++;
-                CurrentPiValue.Content = piApproximation = 4 * ((double)inCircle / (double)total);
+                IterationNumber.Content = ++total;
+                CurrentPiValue.Content = piApproximation = 4 * ((double)insideCircle / (double)total);
 
                 if ((piApproximation = Floor(piApproximation, Convert.ToInt32(SecondNumericUpDown.Value.Value))) == piValue)
                 {
