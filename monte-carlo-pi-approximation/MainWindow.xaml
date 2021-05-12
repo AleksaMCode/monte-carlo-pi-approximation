@@ -42,14 +42,13 @@
                 x:Name="FirstNumericUpDown"
                 Grid.Column="2"
                 Interval="1"
-                Focusable="False"
                 Minimum="1"
                 Value="1" />
             <MetroControls:NumericUpDown
                 x:Name="SecondNumericUpDown"
                 Grid.Column="2"
-                Interval="1"
                 Focusable="False"
+                Interval="1"
                 Maximum="8"
                 Minimum="1"
                 Visibility="Hidden"
