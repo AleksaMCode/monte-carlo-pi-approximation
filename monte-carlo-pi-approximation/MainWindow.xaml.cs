@@ -20,12 +20,13 @@ namespace monte_carlo_pi_approximation
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int iterationNumber = 0;
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void firstRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void FirstRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             if (!IsInitialized)
             {
@@ -35,7 +36,7 @@ namespace monte_carlo_pi_approximation
             SecondNumericUpDown.Visibility = Visibility.Hidden;
         }
 
-        private void secondRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void SecondRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             if (!IsInitialized)
             {
@@ -45,10 +46,81 @@ namespace monte_carlo_pi_approximation
             SecondNumericUpDown.Visibility = Visibility.Visible;
         }
 
-        private void FirstNumericUpDown_TouchEnter(object sender, TouchEventArgs e)
+        private async void CalculatePi(object sender, RoutedEventArgs e)
         {
-            FirstNumericUpDown.Visibility = Visibility.Visible;
+            if (firstRadioButton.IsChecked.Value == true)
+            {
+                iterationNumber = Convert.ToInt32(FirstNumericUpDown.Value.Value);
+                MonteCarloPiApproximation();
+            }
+            else
+            {
+                var t = Convert.ToInt32(SecondNumericUpDown.Value.Value);
+                Task.Run(() =>
+                {
+                    System.Windows.Application.Current.Dispatcher.Invoke(() => MonteCarloPiApproximation(Floor(Math.PI, Convert.ToInt32(SecondNumericUpDown.Value.Value))));
+                });
+            }
+        }
 
+        private void MonteCarloPiApproximation()
+        {
+            var piApproximation = 0.0;
+            var total = 0;
+            var inCircle = 0;
+            double x, y = 0;
+            var rnd = new Random();
+
+            while (total < iterationNumber)
+            {
+                x = rnd.NextDouble();
+                y = rnd.NextDouble();
+
+                if (Math.Sqrt(x * x + y * y) <= 1.0)
+                {
+                    inCircle++;
+                }
+
+                IterationNumber.Content = ++total;
+                CurrentPiValue.Content = piApproximation = 4 * ((double)inCircle / (double)total);
+            }
+
+            MessageBox.Show($"{piApproximation:F8}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void MonteCarloPiApproximation(double piValue)
+        {
+            var piApproximation = 0.0;
+            var total = 0;
+            var inCircle = 0;
+            double x, y = 0;
+            var rnd = new Random();
+
+            while (true)
+            {
+                x = rnd.NextDouble();
+                y = rnd.NextDouble();
+
+                if (Math.Sqrt(x * x + y * y) <= 1.0)
+                {
+                    inCircle++;
+                }
+
+                IterationNumber.Content = total++;
+                CurrentPiValue.Content = piApproximation = 4 * ((double)inCircle / (double)total);
+
+                if ((piApproximation = Floor(piApproximation, Convert.ToInt32(SecondNumericUpDown.Value.Value))) == piValue)
+                {
+                    break;
+                }
+            }
+
+            MessageBox.Show($"{piApproximation}", "Approximated Pi");
+        }
+
+        private static double Floor(double value, int decimalPlaces)
+        {
+            return Math.Floor(value * Math.Pow(10, decimalPlaces)) / Math.Pow(10, decimalPlaces);
         }
     }
 }
