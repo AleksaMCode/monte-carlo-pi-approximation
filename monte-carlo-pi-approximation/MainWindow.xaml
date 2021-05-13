@@ -67,6 +67,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             <Label
                 Grid.Column="0"
@@ -97,6 +98,12 @@
                 FontSize="10">
                 0
             </Label>
+            <Button
+                Grid.Column="4"
+                Padding="20,0"
+                Click="StopSimulation">
+                Abort
+            </Button>
         </Grid>
     </Grid>
 </Window>
