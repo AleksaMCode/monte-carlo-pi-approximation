@@ -126,11 +126,11 @@ namespace monte_carlo_pi_approximation
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
                     IterationNumber.Content = ++total;
-                    CurrentPiValue.Content = piApproximation = 4 * ((double)insideCircle / (double)total);
+                    CurrentPiValue.Content = Floor(piApproximation = 4 * ((double)insideCircle / (double)total), 8);
                 });
             }
 
-            MessageBox.Show($"{piApproximation:F8}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show($"π≈{piApproximation:F8}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void MonteCarloPiApproximation(double piValue, int decimalPlaces, CancellationToken token)
@@ -159,7 +159,7 @@ namespace monte_carlo_pi_approximation
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
                     IterationNumber.Content = ++total;
-                    CurrentPiValue.Content = piApproximation = 4 * ((double)insideCircle / (double)total);
+                    CurrentPiValue.Content = Floor(piApproximation = 4 * ((double)insideCircle / (double)total), 8);
                 });
 
                 if ((piApproximation = Floor(piApproximation, decimalPlaces)) == piValue)
@@ -168,7 +168,7 @@ namespace monte_carlo_pi_approximation
                 }
             }
 
-            MessageBox.Show($"{piApproximation}", "Approximated Pi");
+            MessageBox.Show($"π≈{piApproximation}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private static double Floor(double value, int decimalPlaces)
