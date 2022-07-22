@@ -20,5 +20,6 @@ Simulation allows calculation of the number π in two ways:
 </ul>
 
 ## To-Do List
+- [ ] Refactor code
 - [ ] Implement coordinate system visualization.
 - [ ] Remove limit when calculating number π using number of decimal places.
