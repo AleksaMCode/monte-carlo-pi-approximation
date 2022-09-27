@@ -196,7 +196,7 @@ namespace monte_carlo_pi_approximation
             MessageBox.Show($"π≈{simulator.CalculatePiValue(decimalPlaces)}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void SliderLostMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
+        private void SliderChangeHandler(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (sliderGraphResolution.Value / 100 != MonteCarloPiApproxGenerator.ScalingFactor)
             {
