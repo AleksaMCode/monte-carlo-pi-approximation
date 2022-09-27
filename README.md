@@ -10,6 +10,8 @@ Simulation allows calculation of the number π in two ways:
 </ol> 
 </p>
 
+> **Note**: The simulator is limited to 16 digit precision when using the second option due to limitation of type **double**.
+
 ## Screenshot
 <ol>
   <li>Old design before coordinate system visualization:
