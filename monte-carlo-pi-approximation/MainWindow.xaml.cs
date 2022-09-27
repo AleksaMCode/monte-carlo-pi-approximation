@@ -198,7 +198,10 @@ namespace monte_carlo_pi_approximation
 
         private void SliderLostMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            SetGraphResolution();
+            if (sliderGraphResolution.Value / 100 != MonteCarloPiApproxGenerator.ScalingFactor)
+            {
+                SetGraphResolution();
+            }
         }
     }
 }
