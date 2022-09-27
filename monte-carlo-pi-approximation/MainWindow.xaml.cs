@@ -80,7 +80,7 @@ namespace monte_carlo_pi_approximation
             else
             {
                 var decimalPlaces = (int)SecondNumericUpDown.Value.Value;
-                task = Task.Run(() => MonteCarloPiApproximation(Floor(Math.PI, decimalPlaces), decimalPlaces, source.Token), source.Token);
+                task = Task.Run(() => MonteCarloPiApproximation(MonteCarloPiApproxGenerator.Floor(Math.PI, decimalPlaces), decimalPlaces, source.Token), source.Token);
             }
 
             try
@@ -103,43 +103,33 @@ namespace monte_carlo_pi_approximation
         private void MonteCarloPiApproximation(CancellationToken token)
         {
             var piApproximation = 0.0;
-            var total = 0;
-            var insideCircle = 0;
-            double x, y;
-            var rnd = new Random();
+            var simulator = new MonteCarloPiApproxGenerator();
 
-            while (total < iterationNumber)
+
+            while (simulator.NumberOfPoints < iterationNumber)
             {
                 if (token.IsCancellationRequested)
                 {
                     token.ThrowIfCancellationRequested();
                 }
 
-                x = rnd.NextDouble();
-                y = rnd.NextDouble();
-
-                if (Math.Sqrt(x * x + y * y) <= 1.0)
-                {
-                    insideCircle++;
-                }
+                simulator.GeneratePoint();
+                piApproximation = simulator.CalculatePiValue();
 
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
-                    IterationNumber.Content = ++total;
-                    CurrentPiValue.Content = Floor(piApproximation = 4 * ((double)insideCircle / (double)total), 8);
+                    IterationNumber.Content = simulator.NumberOfPoints;
+                    CurrentPiValue.Content = piApproximation;
                 });
             }
-
+            
             MessageBox.Show($"π≈{piApproximation:F8}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void MonteCarloPiApproximation(double piValue, int decimalPlaces, CancellationToken token)
         {
             var piApproximation = 0.0;
-            var total = 0;
-            var insideCircle = 0;
-            double x, y;
-            var rnd = new Random();
+            var simulator = new MonteCarloPiApproxGenerator();
 
             while (true)
             {
@@ -148,32 +138,22 @@ namespace monte_carlo_pi_approximation
                     token.ThrowIfCancellationRequested();
                 }
 
-                x = rnd.NextDouble();
-                y = rnd.NextDouble();
-
-                if (Math.Sqrt(x * x + y * y) <= 1.0)
-                {
-                    insideCircle++;
-                }
+                simulator.GeneratePoint();
+                piApproximation = simulator.CalculatePiValue(decimalPlaces);
 
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
-                    IterationNumber.Content = ++total;
-                    CurrentPiValue.Content = Floor(piApproximation = 4 * ((double)insideCircle / (double)total), 8);
+                    IterationNumber.Content = simulator.NumberOfPoints;
+                    CurrentPiValue.Content = piApproximation;
                 });
 
-                if ((piApproximation = Floor(piApproximation, decimalPlaces)) == piValue)
+                if (piApproximation == piValue)
                 {
                     break;
                 }
             }
 
             MessageBox.Show($"π≈{piApproximation}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private static double Floor(double value, int decimalPlaces)
-        {
-            return Math.Floor(value * Math.Pow(10, decimalPlaces)) / Math.Pow(10, decimalPlaces);
         }
     }
 }
