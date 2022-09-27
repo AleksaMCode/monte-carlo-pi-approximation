@@ -11,10 +11,11 @@ namespace monte_carlo_pi_approximation
         public int NumberOfPoints = 0;
         public int NumberOfPointsInsideCircle = 0;
         public int Iterationcount = 0;
+        private Random rnd = new Random();
+
 
         public void GeneratePoint()
         {
-            var rnd = new Random();
             var point = new Point(rnd.NextDouble(), rnd.NextDouble());
             ++NumberOfPoints;
 

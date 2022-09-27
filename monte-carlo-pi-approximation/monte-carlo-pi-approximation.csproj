@@ -179,6 +179,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MonteCarloPiApproxGenerator.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
