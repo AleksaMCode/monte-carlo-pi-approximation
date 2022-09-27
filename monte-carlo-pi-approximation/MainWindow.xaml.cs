@@ -1,18 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace monte_carlo_pi_approximation
 {
@@ -26,9 +15,13 @@ namespace monte_carlo_pi_approximation
         private CancellationTokenSource source = new CancellationTokenSource();
         private bool isCancelRequested;
 
+        public string GraphTitle { get; private set; } = "Scaled Pi Approximation Graph";
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
+            lsCircle.ItemsSource = MonteCarloPiApproxGenerator.GenerateQuarterCircleUpperRightQuadrant();
         }
 
         private void FirstRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -100,11 +93,23 @@ namespace monte_carlo_pi_approximation
             isRunning = false;
         }
 
+        private void UpdateCoordinateSystem(MonteCarloPiApproxGenerator simulator)
+        {
+            lsPointInCircle.ItemsSource = null;
+            lsPointNotInCircle.ItemsSource = null;
+            lsPointInCircle.ItemsSource = simulator.PointsInCircle;
+            lsPointNotInCircle.ItemsSource = simulator.PointsNotInCircle;
+        }
+
+        private void UpdateWindowText(MonteCarloPiApproxGenerator simulator)
+        {
+            IterationNumber.Content = simulator.NumberOfPoints;
+            CurrentPiValue.Content = simulator.CalculatePiValue();
+        }
+
         private void MonteCarloPiApproximation(CancellationToken token)
         {
-            var piApproximation = 0.0;
             var simulator = new MonteCarloPiApproxGenerator();
-
 
             while (simulator.NumberOfPoints < iterationNumber)
             {
@@ -114,21 +119,30 @@ namespace monte_carlo_pi_approximation
                 }
 
                 simulator.GeneratePoint();
-                piApproximation = simulator.CalculatePiValue();
-
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
-                    IterationNumber.Content = simulator.NumberOfPoints;
-                    CurrentPiValue.Content = piApproximation;
+                    if (simulator.NumberOfPoints % 1000 == 0)
+                    {
+                        UpdateCoordinateSystem(simulator);
+                    }
+                    if (simulator.NumberOfPoints % 10 == 0)
+                    {
+                        UpdateWindowText(simulator);
+                    }
                 });
             }
-            
-            MessageBox.Show($"π≈{piApproximation:F8}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                UpdateCoordinateSystem(simulator);
+                UpdateWindowText(simulator);
+            });
+
+            MessageBox.Show($"π≈{simulator.CalculatePiValue():F8}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void MonteCarloPiApproximation(double piValue, int decimalPlaces, CancellationToken token)
         {
-            var piApproximation = 0.0;
             var simulator = new MonteCarloPiApproxGenerator();
 
             while (true)
@@ -139,21 +153,31 @@ namespace monte_carlo_pi_approximation
                 }
 
                 simulator.GeneratePoint();
-                piApproximation = simulator.CalculatePiValue(decimalPlaces);
-
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
-                    IterationNumber.Content = simulator.NumberOfPoints;
-                    CurrentPiValue.Content = piApproximation;
+                    if (simulator.NumberOfPoints % 1000 == 0)
+                    {
+                        UpdateCoordinateSystem(simulator);
+                    }
+                    if (simulator.NumberOfPoints % 10 == 0)
+                    {
+                        UpdateWindowText(simulator);
+                    }
                 });
 
-                if (piApproximation == piValue)
+                if (simulator.CalculatePiValue(decimalPlaces) == piValue)
                 {
                     break;
                 }
             }
 
-            MessageBox.Show($"π≈{piApproximation}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                UpdateCoordinateSystem(simulator);
+                UpdateWindowText(simulator);
+            });
+
+            MessageBox.Show($"π≈{simulator.CalculatePiValue(decimalPlaces)}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
