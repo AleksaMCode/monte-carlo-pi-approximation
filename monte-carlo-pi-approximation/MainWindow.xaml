@@ -25,7 +25,7 @@
         <Grid x:Name="plot" Grid.Row="0">
             <oxy:Plot
                 x:Name="oxyPlot"
-                Title="{Binding Title}"
+                Title="{Binding GraphTitle}"
                 Width="350"
                 Height="350">
                 <oxy:Plot.Series>
