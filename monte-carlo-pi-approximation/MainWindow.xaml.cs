@@ -15,7 +15,7 @@ namespace monte_carlo_pi_approximation
         private CancellationTokenSource source = new CancellationTokenSource();
         private bool isCancelRequested;
 
-        public string GraphTitle { get; private set; } = "Scaled Pi Approximation Graph";
+        public string GraphTitle { get; private set; } = "Pi Approximation Graph";
 
         public MonteCarloPiApproxGenerator simulator;
 
