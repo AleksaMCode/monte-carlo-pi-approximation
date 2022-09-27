@@ -138,19 +138,19 @@ namespace monte_carlo_pi_approximation
                 {
                     if (simulator.NumberOfPoints % 1000 == 0)
                     {
-                        UpdateCoordinateSystem(simulator);
+                        UpdateCoordinateSystem();
                     }
                     if (simulator.NumberOfPoints % 10 == 0)
                     {
-                        UpdateWindowText(simulator);
+                        UpdateWindowText();
                     }
                 });
             }
 
             System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
-                UpdateCoordinateSystem(simulator);
-                UpdateWindowText(simulator);
+                UpdateCoordinateSystem();
+                UpdateWindowText();
             });
 
             MessageBox.Show($"π≈{simulator.CalculatePiValue():F8}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -172,11 +172,11 @@ namespace monte_carlo_pi_approximation
                 {
                     if (simulator.NumberOfPoints % 1000 == 0)
                     {
-                        UpdateCoordinateSystem(simulator);
+                        UpdateCoordinateSystem();
                     }
                     if (simulator.NumberOfPoints % 10 == 0)
                     {
-                        UpdateWindowText(simulator);
+                        UpdateWindowText();
                     }
                 });
 
@@ -188,8 +188,8 @@ namespace monte_carlo_pi_approximation
 
             System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
-                UpdateCoordinateSystem(simulator);
-                UpdateWindowText(simulator);
+                UpdateCoordinateSystem();
+                UpdateWindowText();
             });
 
             MessageBox.Show($"π≈{simulator.CalculatePiValue(decimalPlaces)}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
