@@ -108,7 +108,7 @@ namespace monte_carlo_pi_approximation
             isRunning = false;
         }
 
-        private void UpdateCoordinateSystem(MonteCarloPiApproxGenerator simulator)
+        private void UpdateCoordinateSystem()
         {
             lsPointInCircle.ItemsSource = null;
             lsPointNotInCircle.ItemsSource = null;
@@ -116,7 +116,7 @@ namespace monte_carlo_pi_approximation
             lsPointNotInCircle.ItemsSource = simulator.PointsNotInCircle;
         }
 
-        private void UpdateWindowText(MonteCarloPiApproxGenerator simulator)
+        private void UpdateWindowText()
         {
             IterationNumber.Content = simulator.NumberOfPoints;
             CurrentPiValue.Content = simulator.CalculatePiValue();
