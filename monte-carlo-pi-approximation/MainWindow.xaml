@@ -7,6 +7,7 @@
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:monte_carlo_pi_approximation"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:oxy="http://oxyplot.org/wpf"
     Title="Monte Carlo Pi Approximation"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
@@ -14,13 +15,42 @@
     mc:Ignorable="d">
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="*" />
             <RowDefinition Height="5" />
             <RowDefinition Height="*" />
             <RowDefinition Height="5" />
         </Grid.RowDefinitions>
-        <Grid x:Name="radioButtonGrid" Grid.Row="1">
+        <Grid x:Name="plot" Grid.Row="0">
+            <oxy:Plot
+                x:Name="oxyPlot"
+                Title="{Binding GraphTitle}"
+                Width="350"
+                Height="350">
+                <oxy:Plot.Series>
+                    <oxy:LineSeries
+                        x:Name="lsPointInCircle"
+                        LineStyle="None"
+                        MarkerFill="Blue"
+                        MarkerSize="2"
+                        MarkerType="Circle" />
+                    <oxy:LineSeries
+                        x:Name="lsPointNotInCircle"
+                        LineStyle="None"
+                        MarkerFill="Red"
+                        MarkerSize="2"
+                        MarkerType="Circle" />
+                    <oxy:LineSeries
+                        x:Name="lsCircle"
+                        LineStyle="None"
+                        MarkerFill="Black"
+                        MarkerSize="1"
+                        MarkerType="Circle" />
+                </oxy:Plot.Series>
+            </oxy:Plot>
+        </Grid>
+        <Grid x:Name="radioButtonGrid" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="10" />
@@ -61,7 +91,7 @@
                 Calculate
             </Button>
         </Grid>
-        <Grid x:Name="PiGrid" Grid.Row="3">
+        <Grid x:Name="PiGrid" Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" MinWidth="130" />
