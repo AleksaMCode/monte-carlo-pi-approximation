@@ -13,9 +13,9 @@ Simulation allows calculation of the number π in two ways:
 ## Screenshot
 <ol>
   <li>Old design before coordinate system visualization:
-  <p><img style="vertical-align: -0.505ex" align="middle" width="400" src="./resources/screenshot.jpg"></img></p></li>
+  <p><img width="400" src="./resources/screenshot.jpg?raw=true" align="centar" hspace="5" vspace="5"/></p></li>
   <li>New design with coordinate system visualization:
-  <p><img src="./resources/pi-generator.gif?raw=true" width="400" title="successful sign in" align="centar" hspace="5" vspace="5"></p></li>
+  <p><img src="./resources/pi-generator.gif?raw=true" width="400" title="Pi approx." align="centar" hspace="5" vspace="5"/></p></li>
 </ol>
 
 ## References
