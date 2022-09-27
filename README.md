@@ -11,7 +11,12 @@ Simulation allows calculation of the number π in two ways:
 </p>
 
 ## Screenshot
-<img style="vertical-align: -0.505ex" align="middle" width="400" src="./resources/screenshot.jpg"></img>
+<ol>
+  <li>Old design before coordinate system visualization.
+  <img style="vertical-align: -0.505ex" align="middle" width="400" src="./resources/screenshot.jpg"></img></li>
+  <li>New design
+  <p><img src="./resources/pi-generator.gif?raw=true" width="400" title="successful sign in" align="centar" hspace="5" vspace="5"></p></li>
+</ol>
 
 ## References
 ### Books
@@ -21,5 +26,5 @@ Simulation allows calculation of the number π in two ways:
 
 ## To-Do List
 - [x] Refactor code
-- [ ] Implement coordinate system visualization.
+- [x] Implement coordinate system visualization.
 - [ ] ~~Remove limit when calculating number π using number of decimal places.~~
