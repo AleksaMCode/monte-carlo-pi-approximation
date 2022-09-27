@@ -61,12 +61,12 @@
             <StackPanel Grid.Column="0">
                 <RadioButton
                     x:Name="firstRadioButton"
-                    Checked="FirstRadioButton_Checked"
+                    Checked="FirstRadioButtonChecked"
                     IsChecked="true">
                     Number of iterations
                 </RadioButton>
                 <Grid Height="5" />
-                <RadioButton x:Name="secondRadioButton" Checked="SecondRadioButton_Checked">Number of decimal places</RadioButton>
+                <RadioButton x:Name="secondRadioButton" Checked="SecondRadioButtonChecked">Number of decimal places</RadioButton>
             </StackPanel>
             <MetroControls:NumericUpDown
                 x:Name="FirstNumericUpDown"

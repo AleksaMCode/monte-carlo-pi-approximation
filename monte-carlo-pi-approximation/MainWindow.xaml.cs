@@ -24,7 +24,7 @@ namespace monte_carlo_pi_approximation
             lsCircle.ItemsSource = MonteCarloPiApproxGenerator.GenerateQuarterCircleUpperRightQuadrant();
         }
 
-        private void FirstRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void FirstRadioButtonChecked(object sender, RoutedEventArgs e)
         {
             if (!IsInitialized)
             {
@@ -34,7 +34,7 @@ namespace monte_carlo_pi_approximation
             SecondNumericUpDown.Visibility = Visibility.Hidden;
         }
 
-        private void SecondRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void SecondRadioButtonChecked(object sender, RoutedEventArgs e)
         {
             if (!IsInitialized)
             {
