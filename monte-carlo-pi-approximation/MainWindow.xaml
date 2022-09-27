@@ -16,6 +16,7 @@
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="10" />
             <RowDefinition Height="*" />
             <RowDefinition Height="5" />
@@ -50,7 +51,20 @@
                 </oxy:Plot.Series>
             </oxy:Plot>
         </Grid>
-        <Grid x:Name="radioButtonGrid" Grid.Row="2">
+        <Grid x:Name="test" Grid.Row="1">
+            <Slider
+                x:Name="sliderGraphResolution"
+                Margin="5"
+                Padding="0"
+                AutoToolTipPlacement="TopLeft"
+                AutoToolTipPrecision="0"
+                IsMoveToPointEnabled="True"
+                MouseMove="SliderLostMouseCapture"
+                LostMouseCapture="SliderLostMouseCapture"
+                Minimum="10"
+                Value="35" />
+        </Grid>
+        <Grid x:Name="radioButtonGrid" Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="10" />
@@ -91,7 +105,7 @@
                 Calculate
             </Button>
         </Grid>
-        <Grid x:Name="PiGrid" Grid.Row="4">
+        <Grid x:Name="PiGrid" Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" MinWidth="130" />
