@@ -59,10 +59,10 @@
                 AutoToolTipPlacement="TopLeft"
                 AutoToolTipPrecision="0"
                 IsMoveToPointEnabled="True"
-                MouseMove="SliderLostMouseCapture"
                 LostMouseCapture="SliderLostMouseCapture"
                 Minimum="10"
-                Value="35" />
+                MouseMove="SliderLostMouseCapture"
+                Value="100" />
         </Grid>
         <Grid x:Name="radioButtonGrid" Grid.Row="3">
             <Grid.ColumnDefinitions>
