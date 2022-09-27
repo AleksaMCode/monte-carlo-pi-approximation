@@ -17,11 +17,26 @@ namespace monte_carlo_pi_approximation
 
         public string GraphTitle { get; private set; } = "Scaled Pi Approximation Graph";
 
+        public double GraphResolution = 0.35d;
+
+        public MonteCarloPiApproxGenerator simulator;
+
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
+            SetGraphResolution();
+        }
+
+        private void SetGraphResolution()
+        {
+            MonteCarloPiApproxGenerator.ScalingFactor = GraphResolution = sliderGraphResolution.Value / 100;
             lsCircle.ItemsSource = MonteCarloPiApproxGenerator.GenerateQuarterCircleUpperRightQuadrant();
+
+            if(simulator.NumberOfPoints != 0)
+            {
+
+            }
         }
 
         private void FirstRadioButtonChecked(object sender, RoutedEventArgs e)
@@ -109,7 +124,7 @@ namespace monte_carlo_pi_approximation
 
         private void MonteCarloPiApproximation(CancellationToken token)
         {
-            var simulator = new MonteCarloPiApproxGenerator();
+            simulator = new MonteCarloPiApproxGenerator();
 
             while (simulator.NumberOfPoints < iterationNumber)
             {
@@ -143,7 +158,7 @@ namespace monte_carlo_pi_approximation
 
         private void MonteCarloPiApproximation(double piValue, int decimalPlaces, CancellationToken token)
         {
-            var simulator = new MonteCarloPiApproxGenerator();
+            simulator = new MonteCarloPiApproxGenerator();
 
             while (true)
             {
@@ -178,6 +193,11 @@ namespace monte_carlo_pi_approximation
             });
 
             MessageBox.Show($"π≈{simulator.CalculatePiValue(decimalPlaces)}", "Approximated Pi", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void SliderLostMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            SetGraphResolution();
         }
     }
 }
