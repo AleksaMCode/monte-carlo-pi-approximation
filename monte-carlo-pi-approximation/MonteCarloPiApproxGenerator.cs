@@ -34,6 +34,21 @@ namespace monte_carlo_pi_approximation
             }
         }
 
+        public void RescalePoints(double oldScalingFactor)
+        {
+            for (var i = 0; i < PointsInCircle.Count; ++i)
+            {
+                var point = PointsInCircle[i];
+                PointsInCircle[i] = new DataPoint(point.X / oldScalingFactor * ScalingFactor, point.Y / oldScalingFactor * ScalingFactor);
+            }
+
+            for (var i = 0; i < PointsNotInCircle.Count; ++i)
+            {
+                var point = PointsNotInCircle[i];
+                PointsNotInCircle[i] = new DataPoint(point.X / oldScalingFactor * ScalingFactor, point.Y / oldScalingFactor * ScalingFactor);
+            }
+        }
+
         /// <summary>
         /// Generates quarter of a circle in a upper right quadrant using points.
         /// </summary>
