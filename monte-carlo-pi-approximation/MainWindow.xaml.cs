@@ -30,11 +30,14 @@ namespace monte_carlo_pi_approximation
 
         private void SetGraphResolution()
         {
+            var oldScalingFactor = MonteCarloPiApproxGenerator.ScalingFactor;
+
             MonteCarloPiApproxGenerator.ScalingFactor = GraphResolution = sliderGraphResolution.Value / 100;
             lsCircle.ItemsSource = MonteCarloPiApproxGenerator.GenerateQuarterCircleUpperRightQuadrant();
 
             if (simulator != null)
             {
+                simulator.RescalePoints(oldScalingFactor);
                 UpdateCoordinateSystem();
             }
         }
