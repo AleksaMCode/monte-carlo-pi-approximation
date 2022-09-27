@@ -17,8 +17,6 @@ namespace monte_carlo_pi_approximation
 
         public string GraphTitle { get; private set; } = "Scaled Pi Approximation Graph";
 
-        public double GraphResolution = 0.35d;
-
         public MonteCarloPiApproxGenerator simulator;
 
         public MainWindow()
@@ -32,7 +30,7 @@ namespace monte_carlo_pi_approximation
         {
             var oldScalingFactor = MonteCarloPiApproxGenerator.ScalingFactor;
 
-            MonteCarloPiApproxGenerator.ScalingFactor = GraphResolution = sliderGraphResolution.Value / 100;
+            MonteCarloPiApproxGenerator.ScalingFactor = sliderGraphResolution.Value / 100;
             lsCircle.ItemsSource = MonteCarloPiApproxGenerator.GenerateQuarterCircleUpperRightQuadrant();
 
             if (simulator != null)
