@@ -10,7 +10,7 @@ namespace monte_carlo_pi_approximation
         private Random rnd = new Random();
         private const double CIRCLE_ANGLE_DELTA = 0.001;
 
-        public static readonly double ScalingFactor = 0.35;
+        public static double ScalingFactor = 0.35;
         public int NumberOfPoints = 0;
         public int NumberOfPointsInsideCircle = 0;
         public int Iterationcount = 0;
