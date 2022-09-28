@@ -13,7 +13,6 @@ namespace monte_carlo_pi_approximation
         public static double ScalingFactor = 0.35;
         public int NumberOfPoints = 0;
         public int NumberOfPointsInsideCircle = 0;
-        public int Iterationcount = 0;
         public DataPoint ScaledPoint => new DataPoint(Point.X * ScalingFactor, Point.Y * ScalingFactor);
         public IList<DataPoint> PointsInCircle { get; private set; } = new List<DataPoint>();
         public IList<DataPoint> PointsNotInCircle { get; private set; } = new List<DataPoint>();
