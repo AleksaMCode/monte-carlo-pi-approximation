@@ -10,7 +10,7 @@ namespace monte_carlo_pi_approximation
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int iterationNumber = 0;
+        private static int iterationNumber = 0;
         private bool isRunning;
         private CancellationTokenSource source = new CancellationTokenSource();
         private bool isCancelRequested;
