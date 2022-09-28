@@ -6,24 +6,24 @@ namespace monte_carlo_pi_approximation
 {
     public class MonteCarloPiApproxGenerator
     {
-        private DataPoint point;
         private Random rnd = new Random();
         private const double CIRCLE_ANGLE_DELTA = 0.001;
 
+        public DataPoint Point { get; set; }
         public static double ScalingFactor = 0.35;
         public int NumberOfPoints = 0;
         public int NumberOfPointsInsideCircle = 0;
         public int Iterationcount = 0;
-        public DataPoint ScaledPoint => new DataPoint(point.X * ScalingFactor, point.Y * ScalingFactor);
+        public DataPoint ScaledPoint => new DataPoint(Point.X * ScalingFactor, Point.Y * ScalingFactor);
         public IList<DataPoint> PointsInCircle { get; private set; } = new List<DataPoint>();
         public IList<DataPoint> PointsNotInCircle { get; private set; } = new List<DataPoint>();
 
         public void GeneratePoint()
         {
-            point = new DataPoint(rnd.NextDouble(), rnd.NextDouble());
+            Point = new DataPoint(rnd.NextDouble(), rnd.NextDouble());
             ++NumberOfPoints;
 
-            if (Math.Sqrt(point.X * point.X + point.Y * point.Y) <= 1.0)
+            if (Math.Sqrt(Point.X * Point.X + Point.Y * Point.Y) <= 1.0)
             {
                 ++NumberOfPointsInsideCircle;
                 PointsInCircle.Add(ScaledPoint);
