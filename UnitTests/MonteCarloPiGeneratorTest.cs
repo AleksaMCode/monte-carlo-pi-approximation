@@ -7,10 +7,10 @@ namespace UnitTests
     [TestClass]
     public class MonteCarloPiGeneratorTest
     {
-        private MonteCarloPiApproxGenerator gen;
+        private static MonteCarloPiApproxGenerator gen;
 
-        [TestInitialize]
-        public void MyTestInitialize()
+        [ClassInitialize]
+        public static void TestFixtureSetup(TestContext context)
         {
             gen = new MonteCarloPiApproxGenerator();
             MonteCarloPiApproxGenerator.ScalingFactor = 1.0;
@@ -34,7 +34,6 @@ namespace UnitTests
         [TestMethod]
         public void TestPointCount()
         {
-            MyTestInitialize();
             Assert.AreEqual(gen.PointsInCircle.Count, gen.NumberOfPointsInsideCircle);
             Assert.AreEqual(gen.PointsNotInCircle.Count, gen.NumberOfPoints - gen.NumberOfPointsInsideCircle);
         }
