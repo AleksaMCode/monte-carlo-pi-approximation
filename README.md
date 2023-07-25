@@ -30,4 +30,4 @@ Simulation allows calculation of the number π in two ways:
 - [x] Refactor code
 - [x] Implement coordinate system visualization.
 - [ ] ~~Remove limit when calculating number π using number of decimal places.~~
-- [ ] Adjuts the *rendering frame rate* in order to avoid lagging.
+- [ ] Adjust the *rendering frame rate* in order to avoid lagging.
